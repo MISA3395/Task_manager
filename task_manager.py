@@ -271,10 +271,16 @@ def reports():
     completed_tasks = sum(t['completed'] for t in task_list)
     uncompleted_tasks = total_tasks - completed_tasks
 
-    # How to calculate the percentage of tasks not completed and out of date tasks.
-    overdue_tasks = sum(t['completed'] is False and t['due_date'].date() < date.today() for t in task_list)
-    incomplete_percentage = (uncompleted_tasks / total_tasks) * 100
-    overdue_percentage = (overdue_tasks / total_tasks) * 100
+    while True:
+        try:
+            # How to calculate the percentage of tasks not completed and out of date tasks.
+            overdue_tasks = sum(t['completed'] is False and t['due_date'].date() < date.today() for t in task_list)
+            incomplete_percentage = (uncompleted_tasks / total_tasks) * 100
+            overdue_percentage = (overdue_tasks / total_tasks) * 100
+            break
+
+        except ZeroDivisionError as e:
+            print("Error: Cannot divide by zero")
 
     task_overview = f"Task Overview\n" \
                     f"----------------\n" \
@@ -288,8 +294,7 @@ def reports():
     # Open the task_overview file and write the above task_overview to it.
     with open("task_overview.txt", "w") as task_overview_file:
         task_overview_file.write(task_overview)
-
-    print(task_overview)
+        print(task_overview)
 
     # ---Generate User Overview Report---
     # Total number of users.
@@ -312,18 +317,17 @@ def reports():
         percentage_uncompleted_user_tasks = (uncompleted_user_tasks / total_user_tasks) * 100
         percentage_overdue_user_tasks = (overdue_user_tasks / total_user_tasks) * 100
 
-        user_overview += f"\nUsername: {username}\n" \
-                         f"Total tasks assigned: {total_user_tasks}\n" \
-                         f"Percentage of total tasks: {percentage_total_user_tasks:.2f}%\n" \
-                         f"Percentage of tasks completed: {percentage_completed_user_tasks:.2f}%\n" \
-                         f"Percentage of tasks uncompleted: {percentage_uncompleted_user_tasks:.2f}%\n" \
-                         f"Percentage of tasks uncompleted and overdue: {percentage_overdue_user_tasks:.2f}%\n"
-
+    user_overview += f"\nUsername: {username}\n" \
+                    f"Total tasks assigned: {total_user_tasks}\n" \
+                    f"Percentage of total tasks: {percentage_total_user_tasks:.2f}%\n" \
+                    f"Percentage of tasks completed: {percentage_completed_user_tasks:.2f}%\n" \
+                    f"Percentage of tasks uncompleted: {percentage_uncompleted_user_tasks:.2f}%\n" \
+                    f"Percentage of tasks uncompleted and overdue: {percentage_overdue_user_tasks:.2f}%\n"
+            
     # Open the user_overview txt file and write the above user_overview data.
     with open("user_overview.txt", "w") as user_overview_file:
         user_overview_file.write(user_overview)
-
-    print(user_overview)
+        print(user_overview)
 
     # The message below will be output if both of the overviews are generated successfully.
     print("Reports generated successfully.")
@@ -431,4 +435,3 @@ e - Exit
     # If the user inputs an invalid character, the else statement will be executed and prompt to re-enter a character for the menu.
     else:
         print("You have made a wrong choice. Please try again.")
-        
