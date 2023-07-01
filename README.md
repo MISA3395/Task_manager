@@ -1,6 +1,6 @@
 # task_manager
 
-This project is to create a programme that allows users to register and manage tasks.
+This project is to create a programme that allows users to register and manage tasks. 
 
 ## Table of contents
 1. Requirement - Items required to install this project
