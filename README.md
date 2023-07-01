@@ -27,7 +27,7 @@ git clone https://github.com/MISA3395/finalCapstone.git
 ## Demo
 
 1. After you installed the project, run the program and enter the character for each question as bellow.  
-Username: **admin**
+Username: **admin**  
 Password: **password**
 
 ![Image for the user how to use the program](https://github.com/MISA3395/finalCapstone/assets/132083386/63d2249d-7a5f-4e03-9cb3-f1f452d49612)
