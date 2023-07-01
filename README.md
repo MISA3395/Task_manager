@@ -19,7 +19,7 @@ How to install the project.
 
 1. Get VS code at https://code.visualstudio.com/
 
-2. Clone the repo.
+2. Open New terminal and put the sentence below into it (Clone the repo).
 ```bash
 git clone https://github.com/MISA3395/finalCapstone.git
 ```
